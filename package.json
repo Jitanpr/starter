@@ -7,8 +7,19 @@
     "build": "gulp watch",
     "dist": "gulp dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jitanpr/starter.git"
+  },
+  "keywords": [
+    "workflow"
+  ],
   "author": "JP Rajalim",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jitanpr/starter/issues"
+  },
+  "homepage": "https://github.com/Jitanpr/starter#readme",
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
