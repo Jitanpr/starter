@@ -8,7 +8,12 @@ const gulp = require('gulp'),
   webpack = require('webpack'),
   webpackStream = require('webpack-stream'),
   mixins = require('postcss-mixins'),
-  hexrgba = require('postcss-hexrgba');
+  hexrgba = require('postcss-hexrgba'),
+  del = require('del'),
+  htmlMin = require('gulp-htmlmin'),
+  cleanCSS = require('gulp-clean-css'),
+  imagemin = require('gulp-imagemin'),
+  htmlReplace = require('gulp-html-replace');
 
 //   css
 function style() {
@@ -20,7 +25,7 @@ function style() {
 }
 
 //  script
-function script(callback) {
+function script(cb) {
   return gulp
     .src('./src/assets/js/script.js')
     .pipe(
@@ -51,10 +56,12 @@ function script(callback) {
     .pipe(gulp.dest('./src/temp/js'))
     .pipe(browserSync.stream());
 
-  callback();
+  cb();
 }
 
+/////////////////////////////
 // Watch and serve
+////////////////////////////
 function watch() {
   browserSync.init({
     notify: false,
@@ -67,4 +74,75 @@ function watch() {
   gulp.watch('./src/*.html').on('change', browserSync.reload);
 }
 
+////////////////////////////////////
+// dist
+///////////////////////////////////
+// Change 'dist' or 'docs'
+const path = 'dist';
+
+// delete dist folder
+function deleteFolder() {
+  return del(['./dist', './docs']);
+}
+
+// copy HTML , replace css,js link & minify
+function minifyHTML(cb) {
+  gulp
+    .src('./src/*.html')
+    .pipe(
+      htmlReplace({
+        css: './assets/css/style.css',
+        js: './assets/js/main.js'
+      })
+    )
+    .pipe(htmlMin({ collapseWhitespace: true }))
+    .pipe(gulp.dest(`./${path}`));
+
+  cb();
+}
+
+// copy css & minify
+function minifyCSS(cb) {
+  gulp
+    .src('./src/temp/css/*.css')
+    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(gulp.dest(`./${path}/assets/css`));
+
+  cb();
+}
+
+// copy javascript
+// Set 'mode' option to 'development' or 'production' in webpack config
+// 'production' will minify
+function copyJavaScript(cb) {
+  gulp.src('./src/temp/js/*').pipe(gulp.dest(`./${path}/assets/js`));
+  cb();
+}
+
+// copy img and compress
+function compressImg(cb) {
+  gulp
+    .src('./src/assets/img/**/*')
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({ interlaced: true }),
+        imagemin.jpegtran({ progressive: true }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+        imagemin.svgo({
+          plugins: [{ removeViewBox: true }, { cleanupIDs: false }]
+        })
+      ])
+    )
+    .pipe(gulp.dest(`./${path}/assets/img`));
+
+  cb();
+}
+
 exports.watch = watch;
+exports.dist = gulp.series(
+  deleteFolder,
+  minifyHTML,
+  minifyCSS,
+  copyJavaScript,
+  compressImg
+);

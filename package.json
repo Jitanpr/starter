@@ -4,7 +4,8 @@
   "description": "Front-end web development starter",
   "main": "index.js",
   "scripts": {
-    "build": "gulp watch"
+    "build": "gulp watch",
+    "dist": "gulp dist"
   },
   "author": "JP Rajalim",
   "license": "MIT",
@@ -14,8 +15,13 @@
     "autoprefixer": "^9.5.0",
     "babel-loader": "^8.0.5",
     "browser-sync": "^2.26.3",
+    "del": "^4.1.0",
     "gulp": "^4.0.0",
+    "gulp-clean-css": "^4.0.0",
     "gulp-concat": "^2.6.1",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^5.0.3",
     "gulp-postcss": "^8.0.0",
     "postcss-hexrgba": "^1.0.1",
     "postcss-import": "^12.0.1",
