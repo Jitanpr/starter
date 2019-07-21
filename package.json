@@ -4,7 +4,7 @@
   "description": "Front-end web development starter",
   "main": "index.js",
   "scripts": {
-    "build": "gulp watch",
+    "dev": "gulp watch",
     "dist": "gulp dist"
   },
   "repository": {
@@ -25,7 +25,7 @@
     "@babel/preset-env": "^7.4.2",
     "autoprefixer": "^9.5.0",
     "babel-loader": "^8.0.5",
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.26.7",
     "del": "^4.1.0",
     "gulp": "^4.0.0",
     "gulp-clean-css": "^4.0.0",
