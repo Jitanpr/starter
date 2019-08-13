@@ -7,18 +7,12 @@
     "dev": "gulp watch",
     "dist": "gulp dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jitanpr/starter.git"
-  },
-  "keywords": [
-    "workflow"
+  "browserslist": [
+    "last 2 version",
+    "> 2%"
   ],
   "author": "JP Rajalim",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Jitanpr/starter/issues"
-  },
   "homepage": "https://github.com/Jitanpr/starter#readme",
   "devDependencies": {
     "@babel/core": "^7.4.0",
@@ -28,17 +22,15 @@
     "browser-sync": "^2.26.7",
     "del": "^4.1.0",
     "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.1.0",
     "gulp-clean-css": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-html-replace": "^1.6.2",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^5.0.3",
-    "gulp-postcss": "^8.0.0",
-    "postcss-hexrgba": "^1.0.1",
-    "postcss-import": "^12.0.1",
-    "postcss-mixins": "^6.2.1",
-    "postcss-nested": "^4.1.2",
-    "postcss-simple-vars": "^5.0.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^4.12.0",
     "webpack": "^4.29.6",
     "webpack-stream": "^5.2.1"
   },

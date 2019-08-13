@@ -5,7 +5,7 @@ Front-end web develop automate workflow with gulp.
 ## Feature
 
     - reload the browser in  file changes
-    - postcss to css
+    - sass to css
     - moder JavaScript to old browsers compatibility
     - image compression
     - minify html, css files
